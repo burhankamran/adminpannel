@@ -1,0 +1,142 @@
+<div style="display: flex; flex-direction: row; align-items: center;
+ justify-content: space-between; " >
+     <div style="margin-left: 80px;" >
+  <mat-form-field class="" appearance="fill" style="margin-top: 10px;">
+    <mat-label>Search By Order No.</mat-label>
+    <input matInput placeholder="Search By Order Number" value=""
+    type="number"  [(ngModel)]="searchId">
+  </mat-form-field>
+  <button mat-button  style=" background-color: #F6BE00;
+   margin-left: 10px; ">
+    <mat-icon style="color: black;"
+    (click)="onSearch()">search</mat-icon>
+  </button>
+    </div>
+     <div>
+  <mat-form-field appearance="fill">
+    <mat-label>Search by Status</mat-label>
+    <mat-select (selectionChange)="onSelectFilter($event.value)">
+      <mat-option *ngFor="let food of valuesAll" [value]="food">
+        {{food}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+   </div>
+   <div  style="margin-right: 80px;">
+  <button mat-button  style=" background-color: #F6BE00;
+  margin-left: 10px; " (click)="onReset()">
+   Reset<mat-icon style="color: black;" >refresh</mat-icon>
+ </button>
+   </div>
+</div>
+
+<div>
+  <mat-card style="display: flex; flex-direction: row;
+  justify-content: space-between;">
+
+     <div style="margin-left: 40px; display: flex;
+    flex-direction: column; justify-content: center;
+    align-items: center;
+     ">
+       <h1>{{countD}}</h1>
+       <p>Delieverd</p>
+     </div>
+
+     <div style=" display: flex;
+     flex-direction: column; justify-content: center;
+     align-items: center;
+      " >
+      <h1>{{countW}}</h1>
+      <p>On The Way</p>
+    </div>
+
+
+
+    <div style=" display: flex;
+    flex-direction: column; justify-content: center;
+    align-items: center;
+     margin-right: 40px; ">
+      <h1>{{countP}}</h1>
+      <p>Pending</p>
+    </div>
+
+
+  </mat-card>
+</div>
+
+<div class="mat-elevation-z8" style="padding:30px">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+
+      <td mat-cell *matCellDef="let element">
+        {{element.address}}
+      </td>
+
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+       <mat-icon class="edit"  [routerLink]="['/orderDetail',element.id]"
+          >reviews</mat-icon>
+          <mat-icon class="edit" style="margin-left: 10px;"
+          *ngIf="element.status=='on the way'"
+          (click)="openDialog(element.userId,element.total)"
+          >directions_bike</mat-icon>
+
+      </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"  >
+       <h4 *ngIf="element.status=='delieverd'">{{element.status}}</h4>
+
+
+      <mat-form-field appearance="fill" *ngIf="element.status!=='delieverd'" >
+          <!-- <mat-label>Favorite food</mat-label> -->
+          <mat-select [(value)]="element.status" (selectionChange)="onSelect($event.value,element.id)">
+            <mat-option *ngFor="let food of valuesAll" [value]="food">
+              {{food}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

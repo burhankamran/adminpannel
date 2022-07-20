@@ -1,0 +1,36 @@
+
+<div class="container">
+  <form [formGroup]="formGroup" action="" class="form-con"
+  (submit)="onSubmit()">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Rider Name</mat-label>
+      <input matInput formControlName="name" style="color:black;">
+
+     </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" style="color:black;">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phone"
+      type="tel"
+      style="color:black;">
+
+    </mat-form-field>
+
+    <div style="display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 170px;">
+   <button mat-raised-button
+   type="submit"
+ color="success">Add Rider</button>
+  </div>
+
+
+  </form>
+</div>

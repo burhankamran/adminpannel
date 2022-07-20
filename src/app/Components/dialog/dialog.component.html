@@ -1,0 +1,50 @@
+<h4>Assign A Rider.! </h4>
+<!-- <mat-form-field appearance="fill">
+  <mat-label></mat-label>
+  <mat-select>
+    <mat-option *ngFor="let food of food" [value]="food">
+      {{food}}
+    </mat-option>
+  </mat-select>
+</mat-form-field> -->
+
+ <div style="width: 350px;" *ngFor="let rider of Rider ">
+  <div style="background-color: #F6BE00	;border-radius: 5px;
+  padding: 10px; box-shadow: 1px 1px 1px 1px grey;margin-bottom: 20px;">
+  <div  style="display: flex;flex-direction: row; justify-content: space-between;">
+    <h2>{{rider.userName}}</h2>
+    <button mat-raised-button  style="width: 100px; height:40px
+    "
+type="submit" (click)="onSubmit(rider.id)"
+   color="grey">Assign</button>
+  </div>
+
+      <h4>email: {{rider.email}}</h4>
+      <h4>phone: {{rider.phone}}</h4>
+
+  </div>
+ </div>
+
+
+<!-- <cdk-virtual-scroll-viewport itemSize="19">
+  <div *cdkVirtualFor="let item of items" class="example-item">
+    <div style="background-color: #F6BE00	;border-radius: 5px;
+    padding: 10px; box-shadow: 1px 1px 1px 1px grey">
+       <h2>Naseem Shah</h2>
+        <h4>email: naee@gmail.com</h4>
+        <h4>phone: 033292o4284</h4>
+
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport> -->
+
+<div style="display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 30px; margin-top: 30px;" >
+
+<button mat-raised-button
+type="submit" (click)="onNoClick()"
+color="success">close</button>
+</div>
+

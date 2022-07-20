@@ -1,0 +1,70 @@
+<div class="container">
+
+    <form [formGroup]="formGroup" action="" class="form-con"
+    (submit)="onSubmit()">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Product Name</mat-label>
+        <input matInput formControlName="name" style="color:black;">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="" style="color:black;"
+        formControlName="description"
+        ></textarea>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+     <mat-label>Food Category</mat-label>
+       <mat-select formControlName="category" >
+          <mat-option *ngFor="let food of foods" [value]="food.value"
+          style="color:black;">
+           {{food.viewValue}}
+           </mat-option>
+        </mat-select>
+        </mat-form-field>
+        <div *ngIf="mode!='view'">
+        <a class="w3-button oka" (click)="filePicker.click()"> <mat-icon
+          >camera_enhance</mat-icon></a>
+        </div>
+        <input class="w3-input" style="visibility: hidden;" required
+         type="file" #filePicker formControlName="imageUrl" (change)="onImage1($event)">
+       <img [src]="imagePreview1" alt="" style="margin-bottom: 30px;"  >
+
+       <mat-form-field appearance="fill" *ngIf="mode!='view'">
+        <mat-label>Product Variation Qty</mat-label>
+          <mat-select style="color:black;">
+             <mat-option *ngFor="let food of productVar"
+             (click)="sel(food.value)"
+             [value]="food.value">
+              {{food.viewValue}}
+              </mat-option>
+           </mat-select>
+           </mat-form-field>
+
+           <section style="width: 400px;"
+            *ngFor='let in of counter(prodVar) ;let i = index'>
+           <mat-form-field
+
+           class="example-full-width" appearance="fill">
+            <mat-label>Type {{in}}</mat-label>
+            <input matInput [formControlName]="'type'+i"  style="color:black;" >
+          </mat-form-field>
+
+          <mat-form-field
+          class="example-full-width" appearance="fill">
+           <mat-label>Price</mat-label>
+           <input matInput [formControlName]="'price'+i"  style="color:black;">
+         </mat-form-field>
+        </section>
+        <div style="display: flex;
+         align-items: center;
+         justify-content: center;
+         margin-bottom: 170px;" *ngIf="mode!='view'">
+        <button mat-raised-button
+        type="submit"
+      color="success">{{ mode=='create'? 'Add Product':'Update Product'}}</button>
+       </div>
+      </form>
+
+</div>

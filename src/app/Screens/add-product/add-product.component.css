@@ -1,0 +1,25 @@
+.form-con
+{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  margin-top: 30px;
+}
+
+.container
+{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+     height: 100%;
+}
+
+.mat-success {
+  background-color: #F6BE00	;
+  color: black;
+  width: 170px;
+}
+

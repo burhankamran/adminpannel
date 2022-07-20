@@ -1,0 +1,53 @@
+<mat-nav-list >
+    <a style="margin-top: 70px;" mat-list-item routerLink="/signup" *ngIf="!userAuth"
+    (click)="onClose()">
+    <span>SignUp</span>
+    <mat-icon>face</mat-icon>
+    </a>
+    <a mat-list-item routerLink="/login" *ngIf="!userAuth"
+    (click)="onClose()">
+    <span>Login</span>
+    <mat-icon>login</mat-icon>
+    </a>
+    <a mat-list-item routerLink="/add-product" *ngIf="userAuth" style="margin-top: 70px;"
+    (click)="onClose()"
+    >
+    <span>Add Product</span>
+    <mat-icon>add</mat-icon>
+    </a>
+
+
+        <a mat-list-item routerLink="/allProducts" *ngIf="userAuth"
+    (click)="onClose()">
+        <span>All Products</span>
+        <mat-icon>list</mat-icon>
+        </a>
+
+        <a mat-list-item routerLink="/orders" *ngIf="userAuth"
+        (click)="onClose()">
+            <span>Orders</span>
+            <mat-icon>shopping_cart</mat-icon>
+            </a>
+
+            <a mat-list-item routerLink="/users" *ngIf="userAuth"
+            (click)="onClose()">
+                <span>Users</span>
+                <mat-icon>group</mat-icon>
+                </a>
+                <a mat-list-item routerLink="/add-rider" *ngIf="userAuth"
+                (click)="onClose()">
+                    <span>Add-Rider</span>
+                    <mat-icon>add</mat-icon>
+                    </a>
+                <a mat-list-item routerLink="/productHistory" *ngIf="userAuth"
+            (click)="onClose()">
+                <span>PriceHistory</span>
+                <mat-icon>attach_money</mat-icon>
+                </a>
+
+                <a mat-list-item routerLink="/training" *ngIf="userAuth"
+                (click)="onLogout() ">
+                    <span>LogOut</span>
+                    <mat-icon>eject</mat-icon>
+                    </a>
+</mat-nav-list>

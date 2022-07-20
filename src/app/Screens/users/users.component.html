@@ -1,0 +1,116 @@
+<div style="display: flex; flex-direction: row; align-items: center;
+ justify-content: space-between;" >
+     <div style="margin-left: 80px;" >
+  <mat-form-field class="" appearance="fill" style="margin-top: 10px;">
+    <mat-label>Search By Id.</mat-label>
+    <input matInput placeholder="Search By Order Number" value=""
+    type="number"  [(ngModel)]="searchId">
+  </mat-form-field>
+  <button mat-button  style=" background-color: #F6BE00;
+   margin-left: 10px; " (click)="onSearch()">
+    <mat-icon style="color: black;" >search</mat-icon>
+  </button>
+    </div>
+     <!-- <div>
+  <mat-form-field appearance="fill">
+    <mat-label>Search by Status</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of valuesAll" [value]="food">
+        {{food}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+   </div> -->
+   <div  style="margin-right: 80px;">
+  <button mat-button  style=" background-color: #F6BE00;
+  margin-left: 10px; " (click)="onReset()">
+   Reset<mat-icon style="color: black;" >refresh</mat-icon>
+ </button>
+   </div>
+</div>
+
+<div>
+  <mat-card style="display: flex; flex-direction: row;
+  align-items: center;justify-content: center; ">
+
+
+    <div style=" display: flex;
+    flex-direction: column; justify-content: center;
+    align-items: center;
+     margin-right: 40px; ">
+      <h1>{{total}}</h1>
+      <p>Total</p>
+    </div>
+
+
+  </mat-card>
+</div>
+
+<div class="mat-elevation-z8" style="padding: 30px;">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+
+      <td mat-cell *matCellDef="let element">
+        {{element.email}}
+      </td>
+
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> createdAt </th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+
+          <mat-icon class="edit" style="margin-left: 10px;" (click)="deleteUser(element.id)"
+          >delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="fill">
+
+          <mat-select>
+            <mat-option *ngFor="let food of valuesAll" [value]=" ">
+              {{food}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[2, 4, 8]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
